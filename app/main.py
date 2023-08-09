@@ -2,7 +2,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from uvicorn import run
 from sentence_transformers import SentenceTransformer, util
-from huggingface_hub import hf_hub_download
 import os
 import pickle
 import pandas as pd
@@ -22,7 +21,18 @@ app.add_middleware(
 )
 
 embeddings = pickle.load("meme-embeddings.pkl", "rb")
-df = 
+df = pd.read_csv("input.csv")
+model = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
+
+def generate_memes(prompt):
+    prompt_embedding = model.encode(prompt, convert_to_tensor=True)
+    hits = util.semantic_search(prompt_embedding, embeddings, top_k=5)
+    hits = pd.DataFrame(hits[0], columns=['corpus_id', 'score'])
+    desired_ids = hits["corpus_id"]
+    filtered_df = df.loc[df['id'].isin(desired_ids)]
+    return (
+       list(filtered_df["url"]) 
+    )
 
 @app.get("/")
 async def root():
@@ -32,9 +42,8 @@ async def root():
 @app.post("/retrieve")
 async def get_net_image_prediction(prompt: str = ""):
     if image_link == "":
-        return {"message": "No image link provided"}
-    pred, idx, prob = learn.predict(PILImage.create(urlopen(image_link)))
-    return {"predcition": pred, "probability": float(prob[0])}
+        return {"message": "No Pompt"}
+    return {"memes": generate_memes(prompt)}
 
 
 if __name__ == "__main__":
