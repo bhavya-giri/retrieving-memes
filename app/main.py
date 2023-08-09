@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from uvicorn import run
+import torch
 from sentence_transformers import SentenceTransformer, util
 import os
 import pickle
@@ -20,7 +21,14 @@ app.add_middleware(
     allow_headers=headers,
 )
 
-embeddings = pickle.load("meme-embeddings.pkl", "rb")
+
+# def load_from_pkl_file(path):
+#     with open(path,'rb') as f:
+#         return pickle.load(f)
+# embeddings = load_from_pkl_file("meme-embeddings.pkl")
+with open('meme-embeddings.pkl', "rb") as fIn:
+    stored_data = pickle.load(fIn)
+    embeddings = stored_data
 df = pd.read_csv("input.csv")
 model = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
 
@@ -41,9 +49,10 @@ async def root():
 
 @app.post("/retrieve")
 async def get_net_image_prediction(prompt: str = ""):
-    if image_link == "":
+    if prompt == "":
         return {"message": "No Pompt"}
-    return {"memes": generate_memes(prompt)}
+    list_memes = generate_memes(prompt)
+    return {"memes": list_memes }
 
 
 if __name__ == "__main__":
