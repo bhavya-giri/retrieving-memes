@@ -14,7 +14,7 @@ Project Organization
     ├── README.md          <- The top-level README for developers using this project.
     |
     ├── app
-    │   ├── app.py              <- Gradio App
+    │   ├── app.py               <- Gradio App
     │   ├── requirements.txt     <- Requirements for Gradio App
     |
     ├── data
@@ -25,8 +25,8 @@ Project Organization
     │   └── required_cols.csv        <- Dataset with string columns
     │
     ├── notebooks          
-    |   ├── EDA and Cleaning Data.ipynb               <- Exploring and cleaning the raw data to input.csv
-    │   ├── Semantic Search.ipynb      <- Using Sentence Transformer create semantic search based on cosine similarity
+    |   ├── EDA and Cleaning Data.ipynb       <- Exploring and cleaning the raw data to input.csv
+    │   ├── Semantic Search.ipynb             <- Using Sentence Transformer create semantic search based on cosine similarity
     │
     └──  requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
 
