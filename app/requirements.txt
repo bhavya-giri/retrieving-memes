@@ -1,5 +1,5 @@
-xfastapi == 0.96.1 
-uvicorn== 0.22.0 
-pandas== 2.0.1
-sentence_transformers== 2.2.2
-torch== 2.0.1
+torch
+sentence_transformers
+pandas
+huggingface_hub
+pillow
