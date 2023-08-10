@@ -58,5 +58,5 @@ Start the notebook
 or open with Juoyter Lab
 
 ```bash
-jupyter lab
+ jupyter lab
 ```
