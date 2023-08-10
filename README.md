@@ -9,6 +9,8 @@ Using Semantic Search to retrieve memes
 
 The [Orginal Dataset](https://github.com/eujhwang/meme-cap) is small dataset with 6k memes which are annotated by [OpenFlamingo-9B](https://github.com/mlfoundations/open_flamingo) and [MiniGPT4](https://github.com/Vision-CAIR/MiniGPT-4) models for their zero-shot and few-shot experiments. 
 
+Final Dataset and Embeddings are also available on [🤗 HuggingFace](https://huggingface.co/datasets/bhavyagiri/semantic-memes)
+
 Project Organization
 ------------
     ├── README.md          <- The top-level README for developers using this project.
