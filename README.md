@@ -62,8 +62,3 @@ or open with Juoyter Lab
 ```bash
  jupyter lab
 ```
-
-
-```bash
- jupyter lab
-```
