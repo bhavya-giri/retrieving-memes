@@ -1,34 +1,27 @@
 retrieving-memes
 ==============================
 
-Using Semantic Search to retrieve memes
+The model trained from [roberta-base](https://huggingface.co/roberta-base) on the [imdb-spoiler](https://huggingface.co/datasets/bhavyagiri/imdb-spoiler) dataset for classification.
+The model was trained using `AutoModelForSequenceClassification.from_pretrained` for 3 epochs with a learning rate of 2e-5 and weight decay of 0.01.
 
-[Try it out!](https://huggingface.co/spaces/bhavyagiri/retrieving-memes)
+[Check it out!](https://huggingface.co/bhavyagiri/roberta-base-finetuned-imdb-spoilers)
 
 ### Data
 
-The [Orginal Dataset](https://github.com/eujhwang/meme-cap) is small dataset with 6k memes which are annotated by [OpenFlamingo-9B](https://github.com/mlfoundations/open_flamingo) and [MiniGPT4](https://github.com/Vision-CAIR/MiniGPT-4) models for their zero-shot and few-shot experiments. 
+[imdb-spoiler](https://huggingface.co/datasets/bhavyagiri/imdb-spoiler) is a subset of a [large-dataset](https://www.kaggle.com/datasets/rmisra/imdb-spoiler-dataset) for classifying whether a movie review is a spoiler or not.
 
-Final Dataset and Embeddings are also available on [🤗 HuggingFace](https://huggingface.co/datasets/bhavyagiri/semantic-memes)
+### Evaluation using the dataset validation split gives:
+- F1 0.585
+- Accuracy 0.474
+
 
 Project Organization
 ------------
     ├── README.md          <- The top-level README for developers using this project.
-    |
-    ├── app
-    │   ├── app.py               <- Gradio App
-    │   ├── requirements.txt     <- Requirements for Gradio App
-    |
-    ├── data
-    │   ├── input.csv                <- Final dataset that was used for encoding
-    │   ├── meme-embeddings.pkl      <- Embedding of the memes in the dataset
-    │   ├── raw_memes.json           <- Raw Dataset from meme-cap
-    |   ├── string_data.csv          <- Dataset before concatenating input sequence
-    │   └── required_cols.csv        <- Dataset with string columns
     │
     ├── notebooks          
-    |   ├── EDA and Cleaning Data.ipynb       <- Exploring and cleaning the raw data to input.csv
-    │   ├── Semantic Search.ipynb             <- Using Sentence Transformer create semantic search based on cosine similarity
+    |   ├── EDA and Split.ipynb       <- Exploring and split the original data in a small subset
+    │   ├── Fine-Tuning.ipynb             <- Fine-tuning Roberta-base for Text-Classification
     │
     └──  requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
 
@@ -37,13 +30,13 @@ Project Organization
 Clone the project
 
 ```bash
-  git clone https://github.com/bhavya-giri/retrieving-memes
+  git clone https://github.com/bhavya-giri/spoiler-alert
 ```
 
 Go to the project directory
 
 ```bash
-  cd retrieving-memes
+  cd spoiler-alert
 ```
 
 Install dependencies
